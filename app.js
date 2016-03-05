@@ -15,7 +15,7 @@ app.listen(1337, function () {
     console.log('Express app started on port 3000');
 });
 
-require('./data/DAO/community_dao').getRandomCommunityPool(5, function (err, result) {
+require('./data/DAO/community_dao').DEBUG.getRandomCommunityPool(5, 3, function (err, result) {
     if (err) {
         console.error('ERROR:', err);
     } else {

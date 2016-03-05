@@ -30,7 +30,7 @@ var CommunityMember = function (name, address1, address2) {
  * Receive a random list of community members from underlying data storage
  * @param count {number} Number of results to retrieve. For this demo, this number
  *                       must be less than the total number of community members
- * @param callback {function(error, Array.<CommunityMember>)}
+ * @param callback {function(error: Error, result: Array.<CommunityMember>)}
  *                       Callback method to be invoked when retrieval is finished
  */
 var getRandomCommunityPool = function (count, callback) {
@@ -71,6 +71,38 @@ var getRandomCommunityPool = function (count, callback) {
     );
 };
 
+/**
+ * Used for debugging purposes - gets a list of community members, and appends the
+ *  phrase "(New Entry)" to a certain number of them. This guarantees unique entry creation
+ *  (for debugging and demoing)
+ * @param count {number} Count of entries to retrieve
+ * @param newCount {number} Number of entries retrieved to have "(New Entry)" appended to
+ * @param callback {function (error: Error, result: Array.<CommunityMember>)}
+ */
+var dbgGetRandomCommunityPool = function (count, newCount, callback) {
+    getRandomCommunityPool(count, function (grcpError, initialRandomPool) {
+        if (grcpError) {
+            callback(grcpError);
+            return;
+        }
+
+        if (newCount > count) {
+            newCount = count;
+        }
+
+        for (var i = 0; i < newCount; i++) {
+            initialRandomPool[i].name += ' (New Entry)';
+        }
+
+        callback(null, initialRandomPool);
+    });
+};
+
 exports.CommunityMember = CommunityMember;
 exports.getRandomCommunityPool = getRandomCommunityPool;
+
+exports.DEBUG = {
+    getRandomCommunityPool: dbgGetRandomCommunityPool
+};
+
 exports.DATA_VERSION = 1;
