@@ -39,3 +39,9 @@ html, body, .container {
     display: table-cell;
     vertical-align: middle;
 }
+/*registration*/
+.comment{
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 3em;
+}
