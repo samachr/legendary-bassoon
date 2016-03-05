@@ -1,0 +1,26 @@
+{
+  "name": "lb",
+  "homepage": "https://github.com/samachr/legendary-bassoon",
+  "authors": [
+    "TJ Ferrell <tj.ferrell@gmail.com>",
+    "Kamaron Peterson <kam.is.amazing@gmail.com",
+    "Sam Christensen <samachr@gmail.com>"
+  ],
+  "description": "The front end bower file for legendary bassoon",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-route": "^1.5.0",
+    "bootstrap": "^3.3.6"
+  }
+}
