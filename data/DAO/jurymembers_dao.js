@@ -35,13 +35,14 @@ var dbFile = './data/totally-a-database/JuryRegisteredMembers_Master.json';
  *                                            Ready (User has filled out all required information)
  *                                            Inactive (User has no active jury duty, information all filled in)
  * @param deferCount {number?} (optional) Number of times this juror has deferred
+ * @param password {string?} Password used from the user to log into the system (REPLACE WITH BCRYPT HASH)
  * @constructor
  */
 var Juror = function (
     juryID, firstName, lastName, address1, address2,
     phone, email, canText, receiveCall,
     receiveEmail, receiveText, registrationStatus,
-    deferCount
+    deferCount, password
 ) {
     this.JuryID = juryID;
     this.firstName = firstName;
@@ -64,6 +65,7 @@ var Juror = function (
      * @type {number}
      */
     this.deferCount = deferCount || 0;
+    this.password = password || '';
 };
 
 /**
@@ -141,7 +143,8 @@ var getJurorByID = function (juryID, callback) {
 
                         jurors[juryID]['registrationStatus'],
 
-                        jurors[juryID]['deferCount']
+                        jurors[juryID]['deferCount'],
+                        jurors[juryID]['password']
                     ));
                 } else {
                     callback(new Error('Juror by given ID does not exist in the database!'));

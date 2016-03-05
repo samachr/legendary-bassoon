@@ -14,7 +14,8 @@
       "receiveEmail": false,
       "receiveText": false,
       "registrationStatus": "new",
-      "deferCount": 0
+      "deferCount": 0,
+      "password": "my-password"
     }
   }
 }
