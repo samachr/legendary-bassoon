@@ -1,0 +1,55 @@
+{
+  "Community": [{
+    "name": "Oliver Queen",
+    "address1": "103 Edgewood Avenue",
+    "address2": "Fresno, CA 93721"
+  }, {
+    "name": "Barry Allan",
+    "address1": "4447 Confederate Drive",
+    "address2": "Cicero, NY 13039"
+  }, {
+    "name": "Clark Kent",
+    "address1": "2625 Simpson Street",
+    "address2": "Little York, IL 61453"
+  }, {
+    "name": "Ray Palmer",
+    "address1": "4802 Butternut Lane",
+    "address2": "Breese, IL 62230"
+  }, {
+    "name": "Malcom Merlin",
+    "address1": "2654 Buckhannan Avenue",
+    "address2": "Syracuse, NY 13202"
+  }, {
+    "name": "Slade Wilson",
+    "address1": "1176 Hart Country Lane",
+    "address2": "Appling, GA 30802"
+  }, {
+    "name": "Bruce Wayne",
+    "address1": "1253 Melody Lane",
+    "address2": "Richmond, VA 23220"
+  }, {
+    "name": "Perry White",
+    "address1": "3043 Gorby Lane",
+    "address2": "Jackson, MS 39201"
+  }, {
+    "name": "Tony Stark",
+    "address1": "103 Edgewood Avenue",
+    "address2": "Fresno, CA 93721"
+  }, {
+    "name": "Ash Ketchum",
+    "address1": "4447 Confederate Drive",
+    "address2": "Cicero, NY 13039"
+  }, {
+    "name": "Bruce Banner",
+    "address1": "2625 Simpson Street",
+    "address2": "Little York, IL 61453"
+  }, {
+    "name": "Natasha Banner",
+    "address1": "4802 Butternut Lane",
+    "address2": "Breese, IL 62230"
+  }, {
+    "name": "Thor Odinson",
+    "address1": "2654 Buckhannan Avenue",
+    "address2": "Syracuse, NY 13202"
+  }]
+}

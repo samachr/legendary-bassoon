@@ -3,6 +3,7 @@
  *
  * Main entry point of the application
  */
+"use strict";
 
 var express = require('express');
 
@@ -11,5 +12,5 @@ var app = express();
 app.use(express.static('public'));
 
 app.listen(1337, function () {
-    console.log('Express app started on port 3000');
+    console.log('Express app started on port 1337');
 });
