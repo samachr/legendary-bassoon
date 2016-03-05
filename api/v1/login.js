@@ -133,7 +133,8 @@ router.post('/password/set', function (req, res) {
             if (req.body['password'] == '') {
                 res.status(200).json({
                     is_valid: false,
-                    error: 'Password must not be empty'
+                    error: 'Password must not be empty',
+                    juror_id: req.body['juror_id'],
                 });
                 return;
             }

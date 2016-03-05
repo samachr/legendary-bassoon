@@ -1,23 +1,6 @@
 {
-  "nextUID": 19,
+  "nextUID": 20,
   "Jurors": {
-    "0": {
-      "JuryID": 0,
-      "firstName": "Barry",
-      "lastName": "Allan",
-      "address1": "3043 Gorby Lane",
-      "address2": "Appling, GA 30802",
-      "phone": "804-954-3051",
-      "email": "Barry.Allan@gmail.com",
-      "canText": false,
-      "receiveCall": true,
-      "receiveEmail": true,
-      "receiveText": false,
-      "registrationStatus": "new",
-      "deferCount": 0,
-      "password": "",
-      "surveyResponses": []
-    },
     "1": {
       "JuryID": 1,
       "firstName": "Slade",
@@ -323,6 +306,23 @@
       "deferCount": 0,
       "password": "",
       "surveyResponses": []
-    }
+    },
+    "19": {
+      "JuryID": 19,
+      "firstName": "Barry",
+      "lastName": "Allan",
+      "address1": "3043 Gorby Lane",
+      "address2": "Appling, GA 30802",
+      "phone": "804-954-3051",
+      "email": "Barry.Allan@gmail.com",
+      "canText": false,
+      "receiveCall": true,
+      "receiveEmail": true,
+      "receiveText": false,
+      "registrationStatus": "new",
+      "deferCount": 0,
+      "password": "",
+      "surveyResponses": []
+    },
   }
 }

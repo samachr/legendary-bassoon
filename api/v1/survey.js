@@ -92,6 +92,7 @@ router.post('/', function (req, res) {
             if (missingResponses.length > 0 || invalidResponses.length > 0) {
                 res.status(400).json({
                     is_valid: false,
+                    juror_id: req.body['juror_id'],
                     missingResponseIDs: missingResponses,
                     invalidResponses: invalidResponses
                 });
@@ -142,7 +143,8 @@ router.post('/', function (req, res) {
             });
         } else {
             res.status(200).json({
-                is_valid: true
+                is_valid: true,
+                juror_id: req.body['juror_id'],
             });
         }
     });
