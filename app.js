@@ -17,6 +17,7 @@ var app = express();
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Public serving files
 app.use(express.static('public'));

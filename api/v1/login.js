@@ -14,6 +14,7 @@ var Juror = juror_dao.Juror;
 var router = express.Router();
 
 router.post('/verification', function (req, res) {
+  console.log(req.body);
     if (!req.body || !req.body['juror_id'] || !req.body['last_name']) {
         res.status(400).json({
             'is_valid': false,
