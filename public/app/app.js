@@ -19,6 +19,9 @@ lb.config(['$routeProvider',
         }).when('/dashboard', {
             templateUrl: '../template/html/dashboard.html',
             controller: 'dashboard'
+        }).when('/print', {
+            templateUrl: '../template/html/printInstructions.html',
+            controller: 'print'
         });
     }
 ]);
