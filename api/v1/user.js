@@ -52,7 +52,7 @@ route.post('/update', function (req, res) {
         /**
          * Update juror data, write back to file
          * @param jurorData {Juror}
-         * @param cb {function (err: Error|null)}
+         * @param cb {function (err: Error|null, res: Juror?)}
          */
         function (jurorData, cb) {
             if (req.body['firstName']) {
@@ -94,9 +94,11 @@ route.post('/update', function (req, res) {
             if (req.body['password']) {
                 jurorData.password = req.body['password'];
             }
-            juror_dao.updateJurorInfo(req.body['juror_id'], jurorData, cb);
+            juror_dao.updateJurorInfo(req.body['juror_id'], jurorData, function (err) {
+                cb(err, jurorData);
+            });
         }
-    ], function (err) {
+    ], function (err, result) {
         if (err) {
             res.status(500).json({
                 is_valid: false,
@@ -106,7 +108,8 @@ route.post('/update', function (req, res) {
         } else {
             res.status(200).json({
                 is_valid: true,
-                juror_id: req.body['juror_id']
+                juror_id: req.body['juror_id'],
+                juror_data: result
             });
         }
     });
