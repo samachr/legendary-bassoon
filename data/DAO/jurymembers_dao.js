@@ -210,7 +210,7 @@ var saveNewJuror = function (
                         fileData['nextUID'],
                         firstName, lastName, address1, address2,
                         phone, email, canText, receiveCall,
-                        receiveEmail, receiveText, 'new', deferCount
+                        receiveEmail, receiveText, 'new', 0, '', []
                     );
                     cb(null, fileData);
                     fileData['nextUID']++;
