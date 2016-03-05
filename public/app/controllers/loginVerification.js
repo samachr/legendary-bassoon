@@ -1,7 +1,7 @@
 lb.controller("loginVerification", function($scope, $http, $location, juror){
   $scope.error = "";
 
-  console.log(juror.getID());
+  // console.log(juror.getID());
 
   $scope.submit = function() {
     $scope.error = "";
@@ -12,7 +12,7 @@ lb.controller("loginVerification", function($scope, $http, $location, juror){
     } else {
       var data = {juror_id: $scope.juror_id, last_name: $scope.last_name};
       $http.post("/api/v1/login/verification", data).success(function(data, status) {
-          console.log(data);
+          // console.log(data);
           juror.setID($scope.juror_id);
           $location.path("/prescreen");
        })

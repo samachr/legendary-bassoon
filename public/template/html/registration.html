@@ -5,7 +5,7 @@
                 <!-- Default panel contents -->
                 <div class="panel-heading">{{fist_name}} {{last_name}} Account</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" role="form" ng-submit="submit()">
                         <div class="form-group">
                             <label class="control-label col-sm-6" for="password">Password:</label>
                             <div class="col-sm-6">
@@ -44,13 +44,13 @@
                             <div class="col-sm-6">
                                 <!-- <input type="text" class="form-control" id="pwd"> -->
                                 <select class="form-control" ng-model = "user.contact_method">
-                                    <option>
+                                    <option value="receiveCall">
                                         E-Mail
                                     </option>
-                                    <option>
+                                    <option value="receiveEmail">
                                         Phone
                                     </option>
-                                    <option>
+                                    <option value="receiveText">
                                         Text
                                     </option>
                                 </select>

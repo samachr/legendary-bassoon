@@ -13,7 +13,7 @@
       "receiveCall": false,
       "receiveEmail": true,
       "receiveText": true,
-      "registrationStatus": "ineligible",
+      "registrationStatus": "ready",
       "deferCount": 0,
       "password": "",
       "surveyResponses": [
@@ -23,7 +23,7 @@
         "Yes",
         "Yes",
         "Yes",
-        "Yes"
+        "No"
       ]
     },
     "2": {
