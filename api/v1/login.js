@@ -88,7 +88,7 @@ router.post('/verification', function (req, res) {
     });
 });
 
-router.post('/password', function (req, res) {
+router.post('/password/set', function (req, res) {
     if (!req.body || !req.body['juror_id'] || !req.body['password']) {
         res.status(400).json({
             is_valid: false,
@@ -130,6 +130,13 @@ router.post('/password', function (req, res) {
          * @param cb {function (err: Error|null)}
          */
         function (jurorData, cb) {
+            if (req.body['password'] == '') {
+                res.status(200).json({
+                    is_valid: false,
+                    error: 'Password must not be empty'
+                });
+                return;
+            }
             jurorData.password = req.body['password'];
             juror_dao.updateJurorInfo(req.body['juror_id'], jurorData, cb);
         }
@@ -143,6 +150,71 @@ router.post('/password', function (req, res) {
             res.status(200).json({
                 is_valid: true,
                 juror_id: req.body['juror_id']
+            });
+        }
+    });
+});
+
+router.post('/password', function (req, res) {
+    if (!req.body || !req.body['juror_id'] || !req.body['password']) {
+        res.status(400).json({
+            is_valid: false,
+            error: 'Invalid request body: Need juror_id and password'
+        });
+        return;
+    }
+
+    async.waterfall([
+        /**
+         * Make sure juror with provided ID exists
+         * @param cb {function (err: Error|null, doesExist: boolean?)}
+         */
+        function (cb) {
+            juror_dao.doesJurorExist(req.body['juror_id'], cb);
+        },
+
+        /**
+         * Get juror data
+         * @param jurorExists {boolean}
+         * @param cb {function (err: Error|null, jurorData: Juror?)}
+         */
+        function (jurorExists, cb) {
+            if (!jurorExists) {
+                res.status(200).json({
+                    is_valid: false,
+                    error: 'Juror with given ID does not exist',
+                    juror_id: req.body['juror_id']
+                });
+                return;
+            }
+
+            juror_dao.getJurorByID(req.body['juror_id'], cb);
+        },
+
+        /**
+         * Check the provided password against the given juror data
+         * @param jurorData {Juror}
+         */
+        function (jurorData) {
+            if (jurorData.password == req.body['password']) {
+                jurorData.password = null;
+                res.status(200).json({
+                    is_valid: true,
+                    juror_data: jurorData
+                });
+            } else {
+                res.status(200).json({
+                    is_valid: false,
+                    error: 'Incorrect password',
+                    juror_id: req.body['juror_id']
+                });
+            }
+        }
+    ], function (err) {
+        if (err) {
+            res.status(500).json({
+                is_valid: false,
+                error: 'Unknown error: ' + err.message
             });
         }
     });
