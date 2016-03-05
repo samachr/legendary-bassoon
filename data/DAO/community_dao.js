@@ -12,6 +12,7 @@
 "use strict";
 
 var fs = require('fs');
+var dao_util = require('./dao_util');
 
 /**
  * Member of the community - entry which will be extracted from DAO
@@ -30,7 +31,7 @@ var CommunityMember = function (name, address1, address2) {
  * Receive a random list of community members from underlying data storage
  * @param count {number} Number of results to retrieve. For this demo, this number
  *                       must be less than the total number of community members
- * @param callback {function(error: Error, result: Array.<CommunityMember>)}
+ * @param callback {function(error: Error|null, result: Array.<CommunityMember>?)}
  *                       Callback method to be invoked when retrieval is finished
  */
 var getRandomCommunityPool = function (count, callback) {
@@ -77,7 +78,7 @@ var getRandomCommunityPool = function (count, callback) {
  *  (for debugging and demoing)
  * @param count {number} Count of entries to retrieve
  * @param newCount {number} Number of entries retrieved to have "(New Entry)" appended to
- * @param callback {function (error: Error, result: Array.<CommunityMember>)}
+ * @param callback {function (error: Error|null, result: Array.<CommunityMember>?)}
  */
 var dbgGetRandomCommunityPool = function (count, newCount, callback) {
     getRandomCommunityPool(count, function (grcpError, initialRandomPool) {
@@ -104,5 +105,3 @@ exports.getRandomCommunityPool = getRandomCommunityPool;
 exports.DEBUG = {
     getRandomCommunityPool: dbgGetRandomCommunityPool
 };
-
-exports.DATA_VERSION = 1;
