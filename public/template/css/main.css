@@ -3,14 +3,35 @@ This is our main CSS file
 */
 
 /* Juror Login Styles*/
+@import url(https://fonts.googleapis.com/css?family=Lato);
 .login-box {
-    max-width: 300px;
+  max-width: 300px;
+  padding: 30px;
+  margin-bottom: 120px;
+  background-color: #ddd;
+  border-radius: 5px;
+  padding-bottom: 20px;
+}
+.content-box {
+    max-width: 600px;
     margin-bottom: 120px;
+  }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #474747;
+}
+.btn-primary {
+  background-color: #62bdcc;
+  border-color: darker(#62bdcc);
+}
+.btn-primary:focus {
+  background-color: #62bdcc;
 }
 html, body, .container {
     height: 100%;
 }
-.login-container {
+.center-container {
     display: table;
     vertical-align: middle;
 }

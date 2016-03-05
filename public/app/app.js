@@ -7,6 +7,9 @@ lb.config(['$routeProvider',
         $routeProvider.when('/', {
             templateUrl: '../template/html/juror-login.html',
             controller: 'loginVerification'
+        }).when('/prescreen', {
+            templateUrl: '../template/html/prescreen.html',
+            controller: 'prescreen'
         });
     }
 ]);
