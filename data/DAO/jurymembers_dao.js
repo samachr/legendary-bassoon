@@ -16,6 +16,8 @@ var async = require('async');
 
 var dbFile = './data/totally-a-database/JuryRegisteredMembers_Master.json';
 
+var SurveyResponse = require('./survey_dao').SurveyResponse;
+
 /**
  * Entry for the juror tracking database
  * @param juryID {number} Globally unique identifier of this person
@@ -36,13 +38,14 @@ var dbFile = './data/totally-a-database/JuryRegisteredMembers_Master.json';
  *                                            Inactive (User has no active jury duty, information all filled in)
  * @param deferCount {number?} (optional) Number of times this juror has deferred
  * @param password {string?} Password used from the user to log into the system (REPLACE WITH BCRYPT HASH)
+ * @param surveyResponses {Array.<SurveyResponse>|null} List of responses to the survey questions
  * @constructor
  */
 var Juror = function (
     juryID, firstName, lastName, address1, address2,
     phone, email, canText, receiveCall,
     receiveEmail, receiveText, registrationStatus,
-    deferCount, password
+    deferCount, password, surveyResponses
 ) {
     this.JuryID = juryID;
     this.firstName = firstName;
@@ -66,6 +69,8 @@ var Juror = function (
      */
     this.deferCount = deferCount || 0;
     this.password = password || '';
+
+    this.surveyResponses = surveyResponses || null;
 };
 
 /**
@@ -144,7 +149,8 @@ var getJurorByID = function (juryID, callback) {
                         jurors[juryID]['registrationStatus'],
 
                         jurors[juryID]['deferCount'],
-                        jurors[juryID]['password']
+                        jurors[juryID]['password'],
+                        jurors[juryID]['surveyResponses']
                     ));
                 } else {
                     callback(new Error('Juror by given ID does not exist in the database!'));
