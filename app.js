@@ -11,7 +11,8 @@ var bodyParser = require('body-parser');
 var api_v1 = {
     'login': require('./api/v1/login'),
     'survey': require('./api/v1/survey'),
-    'debug': require('./api/v1/debug')
+    'debug': require('./api/v1/debug'),
+    'user': require('./api/v1/user')
 };
 
 var app = express();
@@ -27,6 +28,7 @@ app.use(express.static('public'));
 app.use('/api/v1/login', api_v1.login);
 app.use('/api/v1/survey', api_v1.survey);
 app.use('/api/v1/debug', api_v1.debug);
+app.use('/api/v1/user', api_v1.user);
 
 app.listen(1337, function () {
     console.log('Express app started on port 1337');

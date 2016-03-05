@@ -12,7 +12,6 @@ var juror_dao = require('../../data/DAO/jurymembers_dao');
 var survey_dao = require('../../data/DAO/survey_dao');
 var SurveyResponse = survey_dao.SurveyResponse;
 
-
 var router = express.Router();
 
 router.get('/:id', function (req, res) {

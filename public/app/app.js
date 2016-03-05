@@ -15,13 +15,19 @@ lb.config(['$routeProvider',
             controller: 'registration'
         }).when('/finished', {
             templateUrl: '../template/html/thanksButNo.html',
-            controller: 'thanksButNo'
+            controller: 'finished'
         }).when('/dashboard', {
             templateUrl: '../template/html/dashboard.html',
             controller: 'dashboard'
         }).when('/print', {
             templateUrl: '../template/html/printInstructions.html',
             controller: 'print'
+        }).when('/printLetter', {
+            templateUrl: '../template/html/printBossLetter.html',
+            controller: 'printLetter'
+        }).when('/deferral', {
+            templateUrl: '../template/html/deferral.html',
+            controller: 'printLetter'
         });
     }
 ]);
