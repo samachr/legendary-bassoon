@@ -80,7 +80,7 @@ router.post('/verification', function (req, res) {
         }
     ], function (err) {
         if (err) {
-            res.status(400).json({
+            res.status(500).json({
                 is_valid: false,
                 error: 'Unknown error: ' + err.message
             });
@@ -88,10 +88,64 @@ router.post('/verification', function (req, res) {
     });
 });
 
-//router.post('/password', function (req, res) {
-//    if (!req.body || !req.body['juror_id'] || !req.body['last_name']) {
-//
-//    }
-//});
+router.post('/password', function (req, res) {
+    if (!req.body || !req.body['juror_id'] || !req.body['password']) {
+        res.status(400).json({
+            is_valid: false,
+            error: 'Invalid request body: Need juror_id and password'
+        });
+        return;
+    }
+
+    async.waterfall([
+        /**
+         * Make sure juror with given ID exists
+         * @param cb {function (err: Error|null, res: boolean?)}
+         */
+        function (cb) {
+            juror_dao.doesJurorExist(req.body['juror_id'], cb);
+        },
+
+        /**
+         * Fetch juror data
+         * @param doesJurorExist {boolean}
+         * @param cb {function (err: Error|null, jurorData: Juror?)}
+         */
+        function (doesJurorExist, cb) {
+            if (!doesJurorExist) {
+                res.status(200).json({
+                    is_valid: false,
+                    error: 'Juror with given JurorID does not exist',
+                    juror_id: req.body['juror_id']
+                });
+                return;
+            }
+            juror_dao.getJurorByID(req.body['juror_id'], cb);
+        },
+
+        /**
+         * Update password of the juror (if exists) and
+         *  save back to database.
+         * @param jurorData {Juror}
+         * @param cb {function (err: Error|null)}
+         */
+        function (jurorData, cb) {
+            jurorData.password = req.body['password'];
+            juror_dao.updateJurorInfo(req.body['juror_id'], jurorData, cb);
+        }
+    ], function (err) {
+        if (err) {
+            res.status(500).json({
+                is_valid: false,
+                error: 'Unknown error: ' + err.message
+            });
+        } else {
+            res.status(200).json({
+                is_valid: true,
+                juror_id: req.body['juror_id']
+            });
+        }
+    });
+});
 
 module.exports = router;
