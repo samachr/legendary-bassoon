@@ -32,7 +32,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    if (!req.body || !req.body['juror_id'] || !req.body['responses']) {
+    if (!req.body || isNaN(parseInt(req.body['juror_id'])) || !req.body['responses']) {
         res.status(400).json({
             is_valid: false,
             error: 'Invalid body parameters. Required parameters: juror_id (number), responses (Array.<SurveyResponse>)'

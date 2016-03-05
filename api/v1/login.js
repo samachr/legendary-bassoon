@@ -14,7 +14,7 @@ var Juror = juror_dao.Juror;
 var router = express.Router();
 
 router.post('/verification', function (req, res) {
-    if (!req.body || !req.body['juror_id'] || !req.body['last_name']) {
+    if (!req.body || isNaN(parseInt(req.body['juror_id'])) || !req.body['last_name']) {
         res.status(400).json({
             'is_valid': false,
             'error': 'POST parameters juror_id and last_name required'
@@ -89,7 +89,7 @@ router.post('/verification', function (req, res) {
 });
 
 router.post('/password/set', function (req, res) {
-    if (!req.body || !req.body['juror_id'] || !req.body['password']) {
+    if (!req.body || isNaN(parseInt(req.body['juror_id'])) || !req.body['password']) {
         res.status(400).json({
             is_valid: false,
             error: 'Invalid request body: Need juror_id and password'
@@ -158,7 +158,7 @@ router.post('/password/set', function (req, res) {
 });
 
 router.post('/password', function (req, res) {
-    if (!req.body || !req.body['juror_id'] || !req.body['password']) {
+    if (!req.body || isNaN(parseInt(req.body['juror_id'])) || !req.body['password']) {
         res.status(400).json({
             is_valid: false,
             error: 'Invalid request body: Need juror_id and password'
@@ -223,7 +223,7 @@ router.post('/password', function (req, res) {
 });
 
 router.get('/user/:id', function (req, res) {
-    if (!req.params || !req.params.id || isNaN(parseInt(req.params.id))) {
+    if (!req.params || isNaN(parseInt(req.params.id)) || isNaN(parseInt(req.params.id))) {
         res.status(400).json({
             is_valid: false,
             error: 'Format: /user/:id, with integer id'
