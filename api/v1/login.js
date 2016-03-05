@@ -14,7 +14,6 @@ var Juror = juror_dao.Juror;
 var router = express.Router();
 
 router.post('/verification', function (req, res) {
-  console.log(req.body);
     if (!req.body || !req.body['juror_id'] || !req.body['last_name']) {
         res.status(400).json({
             'is_valid': false,
@@ -210,6 +209,65 @@ router.post('/password', function (req, res) {
                     juror_id: req.body['juror_id']
                 });
             }
+        }
+    ], function (err) {
+        if (err) {
+            res.status(500).json({
+                is_valid: false,
+                error: 'Unknown error: ' + err.message
+            });
+        }
+    });
+});
+
+router.get('/user/:id', function (req, res) {
+    if (!req.params || !req.params.id || isNaN(parseInt(req.params.id))) {
+        res.status(400).json({
+            is_valid: false,
+            error: 'Format: /user/:id, with integer id'
+        });
+        return;
+    }
+
+    async.waterfall([
+        /**
+         * Make sure juror with given ID exists
+         * @param cb {function (err: Error|null, res: boolean?)}
+         */
+        function (cb) {
+            juror_dao.doesJurorExist(req.params.id, cb);
+        },
+
+        /**
+         * If juror exists, get the juror with the given information
+         * @param doesJurorExist {boolean}
+         * @param cb {function (err: Error|null, res: Juror?)}
+         */
+        function (doesJurorExist, cb) {
+            if (!doesJurorExist) {
+                res.status(200).json({
+                    is_valid: false,
+                    error: 'No juror exists with given ID',
+                    juror_id: req.params.id
+                });
+                return;
+            }
+
+            juror_dao.getJurorByID(req.params.id, cb);
+        },
+
+        /**
+         * Strip password from data, return to user
+         * @param jurorData {Juror}
+         * @param cb {function (err: Error|null)}
+         */
+        function (jurorData, cb) {
+            jurorData.password = null;
+            res.status(200).json({
+                is_valid: true,
+                juror_data: jurorData
+            });
+            cb(null);
         }
     ], function (err) {
         if (err) {

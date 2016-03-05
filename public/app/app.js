@@ -10,6 +10,12 @@ lb.config(['$routeProvider',
         }).when('/prescreen', {
             templateUrl: '../template/html/prescreen.html',
             controller: 'prescreen'
+        }).when('/registration', {
+            templateUrl: '../template/html/registration.html',
+            controller: 'registration'
+        }).when('/finished', {
+            templateUrl: '../template/html/thanksButNo.html',
+            controller: 'thanksButNo'
         });
     }
 ]);
