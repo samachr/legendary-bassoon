@@ -1,3 +1,3 @@
-lb.controller("registration", function($scope){
+lb.controller("finished", function($scope){
 
 })
