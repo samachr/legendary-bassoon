@@ -134,10 +134,14 @@ router.post('/', function (req, res) {
          * @param cb {function (err: Error|null, result: Juror?)}
          */
         function (jurorData, cb) {
-            jurorData.surveyResponses = JSON.parse(req.body['responses']);
+            jurorData.surveyResponses = req.body['responses'];
 
             // Do simple check
-            console.log(jurorData);
+            if (jurorData.surveyResponses[6] !== 'No') {
+                jurorData.registrationStatus = 'ineligible';
+            } else {
+                jurorData.registrationStatus = 'ready';
+            }
 
             juror_dao.updateJurorInfo(req.body['juror_id'], jurorData, function (err) {
                 cb(err, jurorData);
