@@ -57,13 +57,7 @@ router.post('/', function (req, res) {
         function (survey_questions, cb) {
             var missingResponses = [];
             var invalidResponses = [];
-            var responses;
-            try {
-                responses = JSON.parse(req.body['responses']);
-            } catch (e) {
-                cb(e);
-                return;
-            }
+            var responses = req.body['responses'];
             for (var i = 0; i < survey_questions.length; i++) {
                 if (!responses[survey_questions[i].questionID]) {
                     missingResponses.push(survey_questions[i].questionID);
