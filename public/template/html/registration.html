@@ -9,7 +9,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-6" for="password">Password:</label>
                             <div class="col-sm-6">
-                                <input type="password" class="form-control" id="password">
+                                <input type="password" class="form-control" id="password" ng-model="user.password">
                             </div>
                         </div>
                         <div class="form-group">
@@ -21,13 +21,13 @@
                         <div class="form-group">
                             <label class="control-label col-sm-6" for="email">E-Mail:</label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" id="email">
+                                <input type="email" class="form-control" id="email" ng-model="user.email">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-6" for="email">Phone:</label>
                             <div class="col-sm-6">
-                                <input type="tel" class="form-control" id="phone">
+                                <input type="tel" class="form-control" id="phone" ng-model="user.phone">
                             </div>
                         </div>
                         <div class="form-group">
@@ -43,7 +43,7 @@
                             <label class="control-label col-sm-6" for="pwd">Preferred Contact Method:</label>
                             <div class="col-sm-6">
                                 <!-- <input type="text" class="form-control" id="pwd"> -->
-                                <select class="form-control">
+                                <select class="form-control" ng-model = "user.">
                                     <option>
                                         E-Mail
                                     </option>

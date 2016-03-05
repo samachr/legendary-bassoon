@@ -4,7 +4,7 @@ lb.controller("prescreen", function($scope, $http, $location){
 
   $http.get("/api/v1/survey").then(function(data, status) {
     $scope.questionList = data.data.questionList;
-    $scope.juror_id = data.data.juror_id || 3;
+    $scope.juror_id = data.data.juror_id;
    })
 
   $scope.submit = function() {

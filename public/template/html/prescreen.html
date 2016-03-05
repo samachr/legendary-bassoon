@@ -9,11 +9,7 @@
                   <div class="form-group" ng-repeat="question in questionList">
                     <label class="control-label col-sm-6" for="pwd">{{question.questionText}}</label>
                     <div class="col-sm-6">
-                      <!-- <input type="text" class="form-control" id="pwd"> -->
                       <select class="form-control" ng-model="answers[question.questionID]" ng-options="item as item for item in question.expectedResponseType">
-                        <!-- <option value="{{question.questionID}}" ng-repeat="response in question.expectedResponseType">
-                          {{response}}
-                        </option> -->
                       </select>
                     </div>
                   </div>
