@@ -144,7 +144,7 @@ router.post('/', function (req, res) {
         } else {
             res.status(200).json({
                 is_valid: true,
-                juror_id: req.body['juror_id'],
+                juror_id: req.body['juror_id']
             });
         }
     });

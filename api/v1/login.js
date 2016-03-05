@@ -139,6 +139,7 @@ router.post('/password/set', function (req, res) {
                 return;
             }
             jurorData.password = req.body['password'];
+            jurorData.registrationStatus = 'active';
             juror_dao.updateJurorInfo(req.body['juror_id'], jurorData, cb);
         }
     ], function (err) {
