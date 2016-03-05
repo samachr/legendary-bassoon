@@ -6,4 +6,5 @@ lb.service('juror', function(){
   this.getID = function(id) {
     return _id;
   }
+  this.juror_data = {}
 });

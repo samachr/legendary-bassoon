@@ -13,10 +13,18 @@
       "receiveCall": false,
       "receiveEmail": true,
       "receiveText": true,
-      "registrationStatus": "new",
+      "registrationStatus": "ineligible",
       "deferCount": 0,
       "password": "",
-      "surveyResponses": []
+      "surveyResponses": [
+        "Under 18",
+        "Yes",
+        "Yes",
+        "Yes",
+        "Yes",
+        "Yes",
+        "Yes"
+      ]
     },
     "2": {
       "JuryID": 2,
