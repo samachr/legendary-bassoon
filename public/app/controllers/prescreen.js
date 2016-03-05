@@ -1,16 +1,15 @@
-lb.controller("prescreen", function($scope, $http, $location){
+lb.controller("prescreen", function($scope, $http, $location, juror){
   $scope.error = "";
+  console.log(juror.getID());
 
-
-  $http.get("/api/v1/survey").then(function(data, status) {
+  $http.get("/api/v1/survey/"+juror.getID()).then(function(data, status) {
     $scope.questionList = data.data.questionList;
-    $scope.juror_id = data.data.juror_id;
    })
 
   $scope.submit = function() {
     $scope.error = "";
 
-    var data = {juror_id: $scope.juror_id, responses: $scope.answers}
+    var data = {juror_id: juror.getID(), responses: $scope.answers}
     $http.post("/api/v1/survey", data).then(function(data, status) {
         $location.path("/registration");
      })
