@@ -1,0 +1,32 @@
+/*
+This is our main CSS file
+*/
+
+.login-box {
+  max-width: 300px;
+  margin-bottom: 120px;
+}
+
+body {
+  font-family: Lato;
+}
+
+.btn-primary {
+  background-color: #62bdcc;
+  border-color: darker(#62bdcc);
+}
+.btn-primary:focus {
+  background-color: #62bdcc;
+}
+
+html, body, .container {
+    height: 100%;
+}
+.login-container {
+    display: table;
+    vertical-align: middle;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}

@@ -1,15 +1,35 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
 <style media="screen">
+  @import url(https://fonts.googleapis.com/css?family=Lato);
+
   .login-box {
     max-width: 300px;
+    padding: 30px;
     margin-bottom: 120px;
+    background-color: #ddd;
+    border-radius: 5px;
+    padding-bottom: 20px;
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background-color: #474747;
+  }
+
+  .btn-primary {
+    background-color: #62bdcc;
+    border-color: darker(#62bdcc);
+  }
+  .btn-primary:focus {
+    background-color: #62bdcc;
   }
 
   html, body, .container {
       height: 100%;
   }
-  .login-container {
+  .center-container {
       display: table;
       vertical-align: middle;
   }
@@ -17,20 +37,25 @@
       display: table-cell;
       vertical-align: middle;
   }
-
 </style>
 
 
-<div class="container login-container">
+<div class="container center-container">
     <div class="vertical-center-row">
         <div align="center">
           <div class="login-box">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Juror ID">
+              <div class="input-group">
+                <span class="input-group-addon" id="idlabel">Juror ID:</span>
+                <input type="text" class="form-control" aria-describedby="idlabel">
+              </div>
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Last Name">
+              <div class="input-group">
+                <span class="input-group-addon" id="nameLabel">Last Name:</span>
+                <input type="text" class="form-control" aria-describedby="nameLabel">
+              </div>
             </div>
 
             <div class="form-group">
