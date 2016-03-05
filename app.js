@@ -3,6 +3,7 @@
  *
  * Main entry point of the application
  */
+"use strict";
 
 var express = require('express');
 
@@ -12,4 +13,12 @@ app.use(express.static('public'));
 
 app.listen(1337, function () {
     console.log('Express app started on port 3000');
+});
+
+require('./data/DAO/community_dao').getRandomCommunityPool(5, function (err, result) {
+    if (err) {
+        console.error('ERROR:', err);
+    } else {
+        console.log('RESULT:', result);
+    }
 });
