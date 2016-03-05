@@ -1,5 +1,6 @@
-lb.controller("loginVerification", function($scope, $http){
+lb.controller("loginVerification", function($scope, $http, $location){
   $scope.error = "";
+
   $scope.submit = function() {
     $scope.error = "";
     if (!$scope.juror_id) {
@@ -7,10 +8,9 @@ lb.controller("loginVerification", function($scope, $http){
     } else if (!$scope.last_name) {
       $scope.error += "Please input a last name";
     } else {
-      var data = {juror_id: $scope.juror_id, last_name: $scope.juror_id};
-      data = JSON.stringify(data);
+      var data = {juror_id: $scope.juror_id, last_name: $scope.last_name};
       $http.post("/api/v1/login/verification", data).success(function(data, status) {
-          console.log(data, status);
+          $location.path("/prescreen");
        })
     }
   }
