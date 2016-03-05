@@ -15,7 +15,14 @@ var SurveyResponse = survey_dao.SurveyResponse;
 
 var router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/:id', function (req, res) {
+    if (!req.params || isNaN(parseInt(req.params.id)) || isNaN(parseInt(req.params.id))) {
+        res.status(400).json({
+            is_valid: false,
+            error: 'Need juror_id in query - /survey/:id'
+        });
+        return;
+    }
     survey_dao.getSurveyQuestions(function (err, questionList) {
         if (err) {
             res.status(500).json({
@@ -25,6 +32,7 @@ router.get('/', function (req, res) {
         } else {
             res.status(200).json({
                 is_valid: true,
+                juror_id: req.params.id,
                 questionList: questionList
             });
         }
@@ -123,13 +131,19 @@ router.post('/', function (req, res) {
         /**
          * Update juror data, save to database
          * @param jurorData {Juror}
-         * @param cb {function (err: Error|null)}
+         * @param cb {function (err: Error|null, result: Juror?)}
          */
         function (jurorData, cb) {
             jurorData.surveyResponses = JSON.parse(req.body['responses']);
-            juror_dao.updateJurorInfo(req.body['juror_id'], jurorData, cb);
+
+            // Do simple check
+            console.log(jurorData);
+
+            juror_dao.updateJurorInfo(req.body['juror_id'], jurorData, function (err) {
+                cb(err, jurorData);
+            });
         }
-    ], function (err) {
+    ], function (err, finalResult) {
         if (err) {
             res.status(500).json({
                 is_valid: false,
@@ -138,7 +152,8 @@ router.post('/', function (req, res) {
         } else {
             res.status(200).json({
                 is_valid: true,
-                juror_id: req.body['juror_id']
+                juror_id: req.body['juror_id'],
+                juror_data: finalResult
             });
         }
     });
