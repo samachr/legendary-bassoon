@@ -19,7 +19,8 @@ var dbFile = './data/totally-a-database/JuryRegisteredMembers_Master.json';
 /**
  * Entry for the juror tracking database
  * @param juryID {number} Globally unique identifier of this person
- * @param name {string} Name of the juror
+ * @param firstName {string} Name of the juror
+ * @param lastName {string} Name of the juror
  * @param address1 {string} Top address line of juror
  * @param address2 {string} Bottom address line of juror
  * @param phone {string|null} Phone number of juror
@@ -29,15 +30,18 @@ var dbFile = './data/totally-a-database/JuryRegisteredMembers_Master.json';
  * @param receiveEmail {boolean} True if the juror would like to receive updates via email
  * @param receiveText {boolean} True if the juror would like to receive text message updates
  * @param deferCount {number?} (optional) Number of times this juror has deferred
+ * @param hasVisited {boolean?} (optional) True if juror has visited the client before, false otherwise
  * @constructor
  */
 var Juror = function (
-    juryID, name, address1, address2,
+    juryID, firstName, lastName, address1, address2,
     phone, email, canText, receiveCall,
-    receiveEmail, receiveText, deferCount
+    receiveEmail, receiveText, deferCount,
+    hasVisited
 ) {
     this.JuryID = juryID;
-    this.name = name;
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.address1 = address1;
     this.address2 = address2;
 
@@ -54,6 +58,8 @@ var Juror = function (
      * @type {number}
      */
     this.deferCount = deferCount || 0;
+
+    this.hasVisited = !!hasVisited || false;
 };
 
 /**
@@ -116,7 +122,8 @@ var getJurorByID = function (juryID, callback) {
                 if (jurors[juryID]){
                     callback(null, new Juror(
                         jurors[juryID]['JuryID'],
-                        jurors[juryID]['name'],
+                        jurors[juryID]['firstName'],
+                        jurors[juryID]['lastName'],
                         jurors[juryID]['address1'],
                         jurors[juryID]['address2'],
 
@@ -128,7 +135,8 @@ var getJurorByID = function (juryID, callback) {
                         jurors[juryID]['receiveEmail'],
                         jurors[juryID]['receiveText'],
 
-                        jurors[juryID]['deferCount']
+                        jurors[juryID]['deferCount'],
+                        jurors[juryID]['hasVisited']
                     ));
                 } else {
                     callback(new Error('Juror by given ID does not exist in the database!'));
@@ -142,7 +150,8 @@ var getJurorByID = function (juryID, callback) {
 
 /**
  * Create a new juror record and add it to the database, from the information given.
- * @param name {string} Name of the juror
+ * @param firstName {string} First name of the juror
+ * @param lastName {string} Last name of the juror
  * @param address1 {string} Top address line of juror
  * @param address2 {string} Bottom address line of juror
  * @param phone {string|null} Phone number of juror
@@ -155,7 +164,7 @@ var getJurorByID = function (juryID, callback) {
  * @param callback {function (err: Error|null)} Callback method to invoke on completion of request
  */
 var saveNewJuror = function (
-    name, address1, address2,
+    firstName, lastName, address1, address2,
     phone, email, canText, receiveCall,
     receiveEmail, receiveText, deferCount,
     callback
@@ -185,7 +194,7 @@ var saveNewJuror = function (
                 try {
                     fileData['Jurors'][fileData['nextUID']] = new Juror(
                         fileData['nextUID'],
-                        name, address1, address2,
+                        firstName, lastName, address1, address2,
                         phone, email, canText, receiveCall,
                         receiveEmail, receiveText, deferCount
                     );
