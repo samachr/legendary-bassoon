@@ -13,6 +13,9 @@ lb.config(['$routeProvider',
         }).when('/registration', {
             templateUrl: '../template/html/registration.html',
             controller: 'registration'
+        }).when('/finished', {
+            templateUrl: '../template/html/thanksButNo.html',
+            controller: 'thanksButNo'
         });
     }
 ]);
