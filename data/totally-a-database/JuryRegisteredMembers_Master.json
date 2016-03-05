@@ -1,5 +1,5 @@
 {
-  "nextUID": 7,
+  "nextUID": 1,
   "Jurors": {
     "0": {
       "JuryID": 0,
@@ -13,8 +13,8 @@
       "receiveCall": true,
       "receiveEmail": false,
       "receiveText": false,
-      "deferCount": 0,
-      "hasVisited": false
+      "registrationStatus": "new",
+      "deferCount": 0
     }
   }
 }
