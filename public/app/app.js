@@ -15,7 +15,7 @@ lb.config(['$routeProvider',
             controller: 'registration'
         }).when('/finished', {
             templateUrl: '../template/html/thanksButNo.html',
-            controller: 'thanksButNo'
+            controller: 'finished'
         }).when('/dashboard', {
             templateUrl: '../template/html/dashboard.html',
             controller: 'dashboard'
