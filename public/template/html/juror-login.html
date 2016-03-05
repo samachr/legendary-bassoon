@@ -1,23 +1,29 @@
 <div class="vertical-center-row">
   <div align="center">
     <div class="login-box">
+      <p>
+        {{error}}
+      </p>
+      <form ng-submit="submit()">
+
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon" id="idlabel">Juror ID:</span>
-          <input type="text" class="form-control" aria-describedby="idlabel">
+          <input type="text" class="form-control" aria-describedby="idlabel" ng-model="juror_id">
         </div>
       </div>
 
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon" id="nameLabel">Last Name:</span>
-          <input type="text" class="form-control" aria-describedby="nameLabel">
+          <input type="text" class="form-control" aria-describedby="nameLabel" ng-model="last_name">
         </div>
       </div>
 
       <div class="form-group">
-        <button type="button" class="btn btn-primary btn-block">Login</button>
+        <button type="submit" class="btn btn-primary btn-block" ng-click="submit()">Login</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
