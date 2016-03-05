@@ -73,16 +73,16 @@ route.post('/update', function (req, res) {
             if (req.body['email']) {
                 jurorData.email = req.body['email'];
             }
-            if (req.body['canText'] === true || req.body['canText'] === false) {
+            if (req.body.hasOwnProperty('canText')) {
                 jurorData.canText = !!req.body['canText'];
             }
-            if (req.body['receiveCall'] === true || req.body['receiveCall'] === false) {
+            if (req.body.hasOwnProperty('receiveCall')) {
                 jurorData.receiveCall = !!req.body['receiveCall'];
             }
-            if (req.body['receiveEmail'] === true || req.body['receiveEmail'] === false) {
+            if (req.body.hasOwnProperty('receiveEmail')) {
                 jurorData.receiveEmail = !!req.body['receiveEmail'];
             }
-            if (req.body['receiveText'] === true || req.body['receiveText'] === false) {
+            if (req.body.hasOwnProperty('receiveText')) {
                 jurorData.receiveText = !!req.body['receiveText'];
             }
             if (req.body['registrationStatus']) {
