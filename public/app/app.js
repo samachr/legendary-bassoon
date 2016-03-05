@@ -25,6 +25,9 @@ lb.config(['$routeProvider',
         }).when('/printLetter', {
             templateUrl: '../template/html/printBossLetter.html',
             controller: 'printLetter'
+        }).when('/deferral', {
+            templateUrl: '../template/html/deferral.html',
+            controller: 'printLetter'
         });
     }
 ]);
