@@ -1,47 +1,25 @@
-<html>
 
+<!DOCTYPE html>
+<html lang="en" ng-app="lb">
 <head>
-    <title>Legendary Bassoon</title>
+    <meta charset="UTF-8">
+    <title>Juror Access</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS Framework Files -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="template/css/main.css" rel="stylesheet"/>
 
-    <!-- 1. Load libraries -->
-    <!-- IE required polyfills, in this exact order -->
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-    <script src="node_modules/angular2/bundles/router.dev.js"></script>
-    <script src="node_modules/angular2/bundles/http.dev.js"></script>
-
-    <!-- Front End Libraries -->
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/tether/dist/js/tether.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-
-
-    <!-- 2. Configure SystemJS -->
-    <script>
-        System.config({
-            packages: {
-                app: {
-                    format: 'register',
-                    defaultExtension: 'js'
-                }
-            }
-        });
-        System.import('app/boot')
-                .then(null, console.error.bind(console));
-    </script>
 
 </head>
-
-<!-- 3. Display the application -->
 <body>
-<lb>Loading screen datt goes here! Hi Sam :)...</lb>
+<!-- Body -->
+<div ng-view></div>
 </body>
-
+<!-- JS Frameworks -->
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<!-- Main App File -->
+<script src="app/app.js"></script>
+<!-- Controllers -->
+<script src="app/controllers/loginVerification.js"></script>
 </html>
