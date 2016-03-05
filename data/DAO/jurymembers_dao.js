@@ -29,15 +29,19 @@ var dbFile = './data/totally-a-database/JuryRegisteredMembers_Master.json';
  * @param receiveCall {boolean} True if the juror would like to receive updates via automated phone call
  * @param receiveEmail {boolean} True if the juror would like to receive updates via email
  * @param receiveText {boolean} True if the juror would like to receive text message updates
+ * @param registrationStatus {string} State of juror.
+ *                           Possible values: New (Just created, information not filled in)
+ *                                            Active (User has created password to system, but no questionnaire)
+ *                                            Ready (User has filled out all required information)
+ *                                            Inactive (User has no active jury duty, information all filled in)
  * @param deferCount {number?} (optional) Number of times this juror has deferred
- * @param hasVisited {boolean?} (optional) True if juror has visited the client before, false otherwise
  * @constructor
  */
 var Juror = function (
     juryID, firstName, lastName, address1, address2,
     phone, email, canText, receiveCall,
-    receiveEmail, receiveText, deferCount,
-    hasVisited
+    receiveEmail, receiveText, registrationStatus,
+    deferCount
 ) {
     this.JuryID = juryID;
     this.firstName = firstName;
@@ -53,13 +57,13 @@ var Juror = function (
     this.receiveEmail = !!receiveEmail;
     this.receiveText = !!receiveText;
 
+    this.registrationStatus = registrationStatus;
+
     /**
      * The number of times this particular
      * @type {number}
      */
     this.deferCount = deferCount || 0;
-
-    this.hasVisited = !!hasVisited || false;
 };
 
 /**
@@ -135,8 +139,9 @@ var getJurorByID = function (juryID, callback) {
                         jurors[juryID]['receiveEmail'],
                         jurors[juryID]['receiveText'],
 
-                        jurors[juryID]['deferCount'],
-                        jurors[juryID]['hasVisited']
+                        jurors[juryID]['registrationStatus'],
+
+                        jurors[juryID]['deferCount']
                     ));
                 } else {
                     callback(new Error('Juror by given ID does not exist in the database!'));
@@ -196,7 +201,7 @@ var saveNewJuror = function (
                         fileData['nextUID'],
                         firstName, lastName, address1, address2,
                         phone, email, canText, receiveCall,
-                        receiveEmail, receiveText, deferCount
+                        receiveEmail, receiveText, 'new', deferCount
                     );
                     cb(null, fileData);
                     fileData['nextUID']++;

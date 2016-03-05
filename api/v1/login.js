@@ -64,8 +64,7 @@ router.post('/verification', function (req, res) {
                 res.status(200).json({
                     is_valid: true,
                     juror_id: req.body['juror_id'],
-                    is_first: !jurorData.hasVisited,
-                    is_renew: false
+                    status: jurorData.registrationStatus
                 });
                 console.log('/api/v1/login/verification - Juror found');
             } else {
@@ -88,5 +87,11 @@ router.post('/verification', function (req, res) {
         }
     });
 });
+
+//router.post('/password', function (req, res) {
+//    if (!req.body || !req.body['juror_id'] || !req.body['last_name']) {
+//
+//    }
+//});
 
 module.exports = router;
