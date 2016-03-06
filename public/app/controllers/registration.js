@@ -35,7 +35,7 @@ lb.controller("registration", function($scope, $location, $http, juror){
     }
 
     var data = {
-      juror_id: juror.juror_id,
+      juror_id: juror.getID(),
       email: $scope.user['email'],
       phone: $scope.user['phone'],
       password: $scope.user['password'],

@@ -1,7 +1,7 @@
 <div class="container center-container">
     <div class="vertical-center-row">
         <div align="center">
-          <div class="content-box panel panel-default col-md-6 col-md-offset-3">
+          <div class="content-box panel panel-default">
               <!-- Default panel contents -->
               <div class="panel-heading">Pre-Screen Questions</div>
               <div class="panel-body">
@@ -9,7 +9,7 @@
                   <div class="form-group" ng-repeat="question in questionList">
                     <label class="control-label col-sm-6" for="pwd">{{question.questionText}}</label>
                     <div class="col-sm-6">
-                      <select class="form-control" ng-model="answers[question.questionID]" ng-options="item as item for item in question.expectedResponseType">
+                      <select class="form-control" ng-model="answers[question.questionID]" ng-options="item as item for item in question.expectedResponseType"  autofocus="true">
                       </select>
                     </div>
                   </div>

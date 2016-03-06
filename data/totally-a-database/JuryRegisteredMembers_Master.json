@@ -12,10 +12,10 @@
       "canText": false,
       "receiveCall": false,
       "receiveEmail": true,
-      "receiveText": true,
+      "receiveText": false,
       "registrationStatus": "ready",
       "deferCount": 0,
-      "password": "",
+      "password": "asdf",
       "surveyResponses": [
         "Under 18",
         "Yes",

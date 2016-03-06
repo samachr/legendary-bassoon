@@ -13,8 +13,8 @@ This is our main CSS file
   padding-bottom: 20px;
 }
 .content-box {
-    max-width: 600px;
-    margin-bottom: 120px;
+    max-width: 400px;
+    /*max-height: 90%;*/
   }
 
 body {
@@ -58,4 +58,3 @@ html, body, .container {
 .text-small{
     font-size: .8em;
 }
-
