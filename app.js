@@ -30,6 +30,6 @@ app.use('/api/v1/survey', api_v1.survey);
 app.use('/api/v1/debug', api_v1.debug);
 app.use('/api/v1/user', api_v1.user);
 
-app.listen(app.get('port') || 1337, function () {
-    console.log('Express app started on port 1337');
+app.listen(process.env.PORT || 1337, function () {
+    console.log('Express app started on port', process.env.PORT || 1337);
 });
